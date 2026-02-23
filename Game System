@@ -1,0 +1,121 @@
+import java.util.Scanner;
+
+public class GameSystem {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        MembershipCard card = new MembershipCard();
+
+        System.out.print("Enter amount to add to wallet: ");
+        double amount = sc.nextDouble();
+        card.addMoney(amount);
+
+        System.out.println("Wallet Balance: " + card.getBalance());
+
+        System.out.println("\nChoose Game:");
+        System.out.println("1. Racing Game (100 credits)");
+        System.out.println("2. Shooting Game (150 credits)");
+        System.out.println("3. VR Adventure Game (200 credits)");
+        System.out.print("Enter choice: ");
+
+        int choice = sc.nextInt();
+
+        Game game = null;  
+
+        switch (choice) {
+            case 1:
+                game = new RacingGame();
+                break;
+            case 2:
+                game = new ShootingGame();
+                break;
+            case 3:
+                game = new VRAdventureGame();
+                break;
+            default:
+                System.out.println("Invalid choice!");
+                System.exit(0);
+        }
+
+        double cost = game.getCost();
+        System.out.println("Game Cost: " + cost);
+
+
+        if (card.getBalance() >= cost) {
+
+            card.deductMoney(cost);
+
+      
+            game.startGame();
+            game.stopGame();
+
+            System.out.println("Remaining Balance: " + card.getBalance());
+
+        } else {
+            System.out.println("Insufficient Balance!");
+        }
+
+        sc.close();
+    }
+}
+
+class MembershipCard {
+
+    private double walletBalance;   
+
+    public void addMoney(double amount) {
+        if (amount > 0) {
+            walletBalance += amount;
+        }
+    }
+    public double getBalance() {
+        return walletBalance;
+    }
+
+    public void deductMoney(double amount) {
+        if (walletBalance >= amount) {
+            walletBalance -= amount;
+        }
+    }
+}
+
+abstract class Game {
+
+    protected double cost;
+
+    public Game(double cost) {
+        this.cost = cost;
+    }
+
+    public void startGame() {
+        System.out.println("Game Started...");
+    }
+
+    public void stopGame() {
+        System.out.println("Game Stopped...");
+    }
+
+    public double getCost() {
+        return cost;
+    }
+}
+
+class RacingGame extends Game {
+    public RacingGame() {
+        super(100);
+    }
+}
+
+class ShootingGame extends Game {
+    public ShootingGame() {
+        super(150);
+    }
+}
+
+class VRAdventureGame extends Game {
+    public VRAdventureGame() {
+        super(200);
+    }
+}
