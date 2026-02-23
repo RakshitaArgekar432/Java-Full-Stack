@@ -1,0 +1,24 @@
+import java.util.*;
+public class Chess {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+          int r = sc.nextInt();
+            System.out.println("Enter the rows:"+ r);
+
+            int cols = sc.nextInt();
+            System.out.println("Enter the cols:" + cols);
+        for(int i = 0; i < r ; i++) {
+            for(int j = 0; j < cols; j++) {
+// using even & odd method for the give characters
+                if((i + j) % 2 == 0) {
+                    System.out.print("B ");
+                } else {
+                    System.out.print("W ");
+                }
+
+            }
+            System.out.println();  
+        }
+    }
+}
