@@ -1,0 +1,26 @@
+
+import java.util.Scanner;
+
+public class TwoWaySwitch {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+       System.out.println("Switch 1 ");
+        int Switch1 = sc.nextInt();
+
+        System.out.println("Switch 2");
+        int Switch2 = sc.nextInt();
+
+        if(Switch1 == 1 && Switch2 == 1){
+            System.out.println("Light is on");
+           
+        } else if(Switch1 == 1 && Switch2 == 0){
+            System.out.println("Light is off");
+            System.out.println("Fan is no");
+            
+        } else if(Switch1 == 0 && Switch2 == 1){
+            System.out.println("Light is off");
+            System.out.println("Motor is on");
+        }
+
+    }
+}
