@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class Record {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int present = 0;
+        int absent = 0;
+
+        System.out.print("Enter number of days: ");
+        int n = sc.nextInt();
+
+        for(int i = 1; i <= n; i++) {
+
+            System.out.print("Day " + i + " (1=Present, 0=Absent): ");
+            int attendance = sc.nextInt();
+
+            if(attendance == 1) {
+                present++;
+            } else if(attendance == 0) {
+                absent++;
+            } else {
+                System.out.println("Enter only 0 or 1");
+                i--;  
+            }
+        }
+
+        System.out.println("Present days: " + present);
+        System.out.println("Absent days: " + absent);
+
+        if(absent > present) {
+            System.out.println("You cannot take the exam.");
+        } else {
+            System.out.println("You can take the exam.");
+        }
+    }
+}
